@@ -8,6 +8,11 @@ const fs = require("fs");
 const path = require("path");
 
 /**
+ * Loads list of engines from consolidate
+ */
+const engines = require('consolidate');
+
+/**
  * Creates the Express server
  */
 const app = express();
@@ -33,6 +38,12 @@ fs.readFile(path.join(__dirname, '../users.json'), {encoding: 'utf8'}, (err, dat
 });
 
 /**
+ * Defined handlebars as a valid engine
+ * using the engine names we got from consolidate
+ */
+app.engine('hbs', engines.handlebars);
+
+/**
  * Setting the views directory
  * and the view engine to pug
  * 
@@ -40,7 +51,7 @@ fs.readFile(path.join(__dirname, '../users.json'), {encoding: 'utf8'}, (err, dat
  * it should be later joined with the directory in which the views are present
  */
 app.set('views', path.join( __dirname, './views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'hbs'); // pug has in built support and doesn't need consolidate
 
 app.get('/', (req, res) => {
 

@@ -7,7 +7,9 @@
     "start": "nodemon src/index.js localhost 8080"
   },
   "dependencies": {
+    "consolidate": "^0.15.1",
     "express": "^4.17.1",
+    "handlebars": "^4.5.2",
     "pug": "^2.0.4"
   },
   "devDependencies": {
