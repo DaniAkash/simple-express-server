@@ -53,6 +53,13 @@ app.engine('hbs', engines.handlebars);
 app.set('views', path.join( __dirname, './views'));
 app.set('view engine', 'hbs'); // pug has in built support and doesn't need consolidate
 
+/**
+ * Setting up a directory to serve static files
+ * using express static middleware
+ */
+app.use('/images', express.static(path.join(__dirname, '../public/images')));
+app.use('/css', express.static(path.join(__dirname, '../public/css')));
+
 app.get('/', (req, res) => {
 
   /**
